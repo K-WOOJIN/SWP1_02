@@ -6,7 +6,7 @@ def application(environ, start_response):
     x = d.get('x', [''])[0]
     y = d.get('y', [''])[0]
     sum, mult = "No INPUT", "No INPUT"
-    if '' not in [x, y] :
+    if x.isdigit() and y.isdigit() :
 	x, y = int(x), int(y)
 	sum, mult = x + y, x * y
     response_body = html % {
