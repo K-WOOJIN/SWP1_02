@@ -3,13 +3,15 @@ from template import html
 
 def application(environ, start_response):
     d = parse_qs(environ['QUERY_STRING'])
-    x = d.get('x', ['0'])[0]
-    y = d.get('y', ['0'])[0]
+    x = d.get('x', [''])[0]
+    y = d.get('y', [''])[0]
+    sum, mult = "No INPUT", "No INPUT"
     if '' not in [x, y] :
 	x, y = int(x), int(y)
+	sum, mult = x + y, x * y
     response_body = html % {
-	'sum': x+y,
-	'mult' : x*y
+	'sum':sum,
+	'mult':mult
 	}
     start_response('200 OK', [
         ('Content-Type', 'text/html'),
